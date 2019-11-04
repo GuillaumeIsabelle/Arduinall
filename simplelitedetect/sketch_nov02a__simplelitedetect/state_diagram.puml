@@ -1,0 +1,22 @@
+@startuml
+
+[*] --> Initialize
+Initialize --> Working
+state Working {
+  [*] --> Standby
+  Standby --> Detected
+  Detected --> Lighting
+  Lighting --> Standby : TimeoutPresenceDetection
+
+}
+Working --> Closing : ShutdownPressed
+Closing --> [*]
+
+' State definition
+Initialize : Device is starting
+Standby : Waiting for someone to show up
+Detected : Someone entered the Scenery
+Lighting : Scenery is lighted 
+
+
+@enduml
